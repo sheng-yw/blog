@@ -5,9 +5,9 @@
 # Site
 title: 博客
 subtitle: ''
-description: ''
-keywords:
-author: John Doe
+description: 每天进度一点点
+keywords: [笔记, React, javascript]
+author: wensheng.yws
 language: en
 timezone: ''
 
@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -63,7 +63,7 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 10
+  per_page: 12
   order_by: -date
 
 # Category & Tag
@@ -98,7 +98,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hexo-theme-matery
+plugins: hexo-generate-feed
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
