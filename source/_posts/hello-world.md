@@ -56,6 +56,11 @@ Object篇
 ## typeof 
 typeof 是用于检测左侧对象是否是右侧对象的子集
 
+## px、rem、em有什么区别
+px代表像素，相对长度单位，像素px是相对于显示器屏幕分辨率而言的，1px就是屏幕上的一个小方格点
+rem相对单位，相较于页面根元素大小而定，在做适配时常用，只需要改变跟元素大小就能调整所有字体大小
+em相对单位，相对于最近父元素大小而言，如未设置则取浏览器默认大小
+
 ## 关于使用React.lazy的问题
   使用React.lazy进行加载组件不做处理会报错A React component suspended while rendering, but no fallback UI was specified.
   错误原因是用lazy 之后, 存在加载中的空档, react 不知道在这个空当中该显示什么, 所以需要我们指定
