@@ -53,8 +53,24 @@ Object篇
 `Object.values(arg) //返回这个对象所有属性值的数组`
 `Object.defineProperties(obj, props) //方法直接在一个对象上定义新的属性或修改现有属性，并返回该对象 Vue3之前最重要的一个api`
 ``
-## typeof 
-typeof 是用于检测左侧对象是否是右侧对象的子集
+## 检测类型的方法
+typeof 使用来判断检测对象的属性 但是typeof null 返回的是object、并非是bug只是js设计如此、区分数组跟对象时不能正确判断
+instanceof 用来检测左侧引用的__proto__是否在右侧对象的Ptototype上，通过原型链查找故这个方法不能判断基本数据类型
+Object.prototype.toString.call(param) 返回具体是什么类型，适用所有类型
+通过构造函数指向判断 
+  `let a = 123`  
+  `a.constructor === Number // true`
+
+
+## hash路由跟history路由的区别
+1、直观来看hash就是url中带#号history不带
+2、hash监听url中hash值的变化(#号后面的内容),不向服务器发送请求就可以改变页面展示
+   history则是监听url整体变化，回去请求服务端需要两端共同支持
+3、hash是支持低版本浏览器的，#号后面值的变化都会触发window.onhashchange,不论浏览器的
+  前进还是后退都会触发
+  history则是基于Html5新增API产生的
+
+  
 
 ## px、rem、em有什么区别
 px代表像素，相对长度单位，像素px是相对于显示器屏幕分辨率而言的，1px就是屏幕上的一个小方格点
@@ -79,7 +95,36 @@ em相对单位，相对于最近父元素大小而言，如未设置则取浏览
     `    </Switch>`
     `  </Router>`
     `</Suspense>`
+## 常见状态码
+  400 请求无效
+  403 禁止访问 无权限
+  404 资源找不到、路径错误或者没有要请求的资源
+  405 资源被禁止
+  408 资源超时
+  200 请求ok
+  502 请求方法不匹配
+  500 服务器出错
 
+## webpack优化手段
+  1、优化loader查找范围 例如Babel只转换src下的文件
+  2、cache-loader缓存loader处理结果
+  3、多线程处理打包  
+  4、删除无用css    purgecss-webpack-plugin 配合 mini-css-extract-plugin使用
+  5、以CDN方式加载资源   add-asset-html-cdn-webpack-plugin插件
+  6、对图片进行压缩优化  image-webpack-loader
+  7、通过speed-measure-webpack-plugin插件查看哪个模块打包费时
+  8、
+## React和ReactDOM的区别
+  React是React库的入口，可以使用 jsx语法、组件、ref、hooks等属性或api
+  ReactDOM只负责和浏览器或DOM操作相关  
 
+## redux与mobx的区别
+  redux将数据保存在单一store中mobx分散存放的
+
+## Promise中api
+  all 顺序执行 又一个失败都为失败
+  allSettled 顺序执行 可以获取每一个的状态
+  race 获取第一个的状态
+    
 
 
