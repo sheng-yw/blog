@@ -14,14 +14,10 @@
     `return newState`
   `})`
   newState为想要改变的最新值，在这个回调中处理逻辑
-## 关于优化
-  setState为异步更新调用一次渲染一次，所以在一个方法内调用多个不同的setState时会导致许多不必要的性能消耗！解决办法我总结了一下两点
-  1、把多个state合并成一个state
-  2、使用React中自带api解决
-    `ReactDOM.unstable_batchedUpdates(() => {`
-      `setState1(xxx)`
-      `setState2(xxx)`
-    `})`
+
+  多次setState时React会自动合并成一次setState，但是有些情况下是不会的，这时就需要使用
+  ReactDOM.unstable_batchedUpdates 这个api来手动处理多次合并一次
+
 
 # React系列中useEffect
   useEffect是可以让你在函数组件中执行副作用操作(相当于类组件中生命周期函数)
@@ -58,10 +54,50 @@
   `}, [xx])`
   ``
 # useContent
- 
+  全局上下文配合usereducer可以做到全局的状态管理 替代mobx、redux
+  `function createContainer(useHook){`
+  `  const Context = react.createContext(null)`
+  `  const Provider = props => {`
+  `    const value = useHook(props.initialValue)`
+  `    retrun (`
+  `      <Context.Provider value={value}>`
+  `        {props.children}`
+  `      </Context.Provider>`
+  `    )`
+  `  }`
+  `  const useContainer = () => {`
+  `    const value = React.useContext(Context)`
+  `    return value`
+  `  }`
+  `  return {`
+  `    Provider,`
+  `    useContainer`
+  `  }`
+
+  `const fn = createContainer(() => {`
+  `  const reducer = (state, action) => {`
+  `    switch(action.type) {`
+  `      case 'xx':`
+  `        return {...state, xx: action.xx}`
+  `        break;`
+  `    }`
+  `  }) `
+  `  const initState = {`
+  `    xx: xx`
+  `  }`
+  `  const [state, dispatch] = useReducer(reducer, initState)`
+  `  return {`
+  `    state, dispatch`
+  `  }`
+  最外围组件使用
+  `<Logic.Provider>xxxx</Logic.Provider>`
+  组件内使用 先引入
+  `const { state, dispatch } = Logic.useContainer()`
 # diff算法
 
 # 设计模式
+
+
 # react 生命周期
 
 
