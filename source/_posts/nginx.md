@@ -26,7 +26,5 @@ location / 　通用匹配，任何未匹配到其它location的请求都会匹�
 location 与 root相结合表示的是实际请求的资源会自动拼接location后的uri
 location 与 alias相结合表示的是实际请求的资源会去alias配置的路径去获取 但是后缀要加"/"
 
-
  
 # 负载均衡
-
