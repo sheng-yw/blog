@@ -42,13 +42,14 @@
     `}`
 # useMemo
   在方法函数，由于不能使用shouldComponentUpdate处理性能问题，react hooks新增了useMemo
+  用来缓存数据，当渲染的数据需要根据state、props经过特定计算而来的时候可以使用useMemo函数缓存这个数据、避免重复调用计算函数浪费性能
   `const x = useMemo(() => {`
   `//TODO`
   `}, [xx])`
   如果useMemo(fn, arr)第二个参数发生变化，则去执行fn 否则只会执行一次，[]也是执行一次
 
 # useCallback
-  用来监听变量缓存或生成一个函数，fn通常当作props进行传递用于子组件进行监听！慎用
+  用来监听变量缓存或生成一个函数，fn通常当作props进行传递用于子组件进行监听！
   `const fn = useCallback(() => {`
   `//TODO`
   `}, [xx])`
