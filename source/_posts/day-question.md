@@ -125,7 +125,30 @@ em相对单位，相对于最近父元素大小而言，如未设置则取浏览
   all 顺序执行 有一个失败都为失败
   allSettled 顺序执行 可以获取每一个的状态
   race 获取第一个的状态
-##   
+## 浅谈webpack打包流程
+
+## js监听dom变化
+1、获取要监听的dom
+const dom = document.querySelector('#id')
+2、创建监听对象 MutationObserver
+const hanldChange = function (dom, observer) {
+  console.log(dom, observer)
+}
+const mutationObserver = new MutationObserver(hanldChange)
+3、定义监听属性、开启监听
+const options = {
+  attributes: true
+}
+mutationObserver.observer(dom, options)
+4、停止监听
+mutationObserver.disconnect()
+5、清除变动记录并返回记录值
+const changes = mutationObserver.takeRecords()
+
+## package.json中版本～ ^含义
+～表示例如1.2.2下载最新的1.2.x的最新包但不会低于1.2.2
+^表示 例如1.2.2 下载1.x.x 的最新包 不会低于1.2.2
+
     
 
 
