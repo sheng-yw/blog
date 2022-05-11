@@ -31,3 +31,17 @@
   npm i nodeinstall -g 
   安装完自身依赖以后执行 nodeinstall 10.0.0 
   查看安装版本 ./node_modules/.bin/node -v
+## 爬虫下载的图片打不开 错误信息download token not specified
+  检查发现把url后面参数给截取了
+## puppetter 包部署问题
+1、Chrome reversion is not downloaded
+打包发现没有安装linux版本相关的chromu插件 需要手动安装 node ./node-modules/puppetter/install.js
+2、Failed to launch the browser process! spawn
+是因为linux服务缺少chromu相关插件，根据git相关问答提示进行安装相关依赖
+实例化chromu时添加参数
+await puppeteer.launch({
+  headless: true, 
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  executablePath: '/opt/conf/chrome/chrome-linux/chrome'
+})
+
