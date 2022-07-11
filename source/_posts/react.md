@@ -127,6 +127,21 @@ React 应用是基于组件构建的，对于组件的比较优化侧重于以�
 # 设计模式
 
 # react 生命周期
+1)、挂载阶段
+constructor(props)：初始化 state 和 props 数据
+getDerivedStateFromProps(nextProps, prevState)
+render()
+componentDidMount()
+2)、更新阶段
+getDerivedStateFromProps(nextProps, prevState)
+shouldComponentUpdate(nextProps, nextState)
+render()
+static getSnapshotBeforeUpdate(prevProps, prevState)
+componentDidUpdate()
+3)、卸载
+componentWillUnmount()
+
+
 
 # react 中高阶组件运用了什么设计模式
 
@@ -135,3 +150,28 @@ React 应用是基于组件构建的，对于组件的比较优化侧重于以�
 ## 函数组件优化
 
 使用 React.memo()对组件进行优化，跟 PureComponet 效果一样，浅比较 props。需要深层比较需要在这个函数传入第二个比较函数它有两个参数，preProps，nextProps
+
+
+## React 18版本新特性
+
+1)、使用createRoot代替ReactDOM.render() 
+  createRoot(document.getElementById('root')).render(<App />)
+2)、使用unmount替代unmountComponentComponentAtNode
+3)、setState同步/异步
+这是 React 此次版本中最大的破坏性更新，并且无法向下兼容
+React 中的批处理简单来说就是将多个状态更新合并为一次重新渲染，以获得更好的性能，在 React 18 之前，React 只能在组件的生命周期函数或者合成事件函数中进行批处理。默认情况下，Promise、setTimeout 以及原生事件中是不会对其进行批处理的。如果需要保持批处理，则可以用 unstable_batchedUpdates 来实现，但它不是一个正式的 API
+如果想在React 18退出批处理使用 flushSync api
+flushSync 会以函数为作用域，函数内部的多个 setState 仍然为批量更新
+4)、组件可以返回null
+5)、startTransition
+  被startTransition 回调包裹的 setState 触发的渲染 被标记为不紧急渲染，这些渲染可能被其他紧急渲染所抢占
+  React提供了一个带有 isPending 转换标志的 useTransition，React 将在状态转换期间提供视觉反馈，并在转换发生时保持浏览器响应。
+## React18版本有哪些坑 
+React18中StrictMode模式下useEffect在dev模式下会执行两次
+解决办法是去掉StrictMode
+
+
+## 问题记录
+1、Create React App 初始化react18的项目，遇到一个由于 react-scripts 引起的 could not resolve dependency 错误：
+  解决办法安装的时候尝试加上 --force
+
