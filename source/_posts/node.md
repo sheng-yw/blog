@@ -21,6 +21,7 @@
   pm2 log ip 查看某一个服务的日志
   pm2 启动时指定node版本需要在pm2.json中配置 "interpreter": "./node_modules/.bin/node",
   或者在执行 pm2 start server.js --interpreter ./node_modules/.bin/node
+  
 ## avn相关
   avn 是一个自动切换node版本的管理工具，需要和nvm配合使用 npm i avn avn-nvm -g
   需要在项目中配置.node-version文件 内容例如：12.0.0
